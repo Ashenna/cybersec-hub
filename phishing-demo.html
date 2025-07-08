@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Simulator - CyberSec Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            50: '#f0f9ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="index.html" class="text-xl font-bold text-blue-400">🛡️ CyberSec Hub</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="password-checker.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Password Checker</a>
+                        <a href="quiz.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Quiz</a>
+                        <a href="#" class="text-white bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Phishing Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="py-12 px-4 bg-gradient-to-r from-red-800 to-orange-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block p-4 bg-red-600 rounded-full mb-6">
+                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Phishing Email Simulator</h1>
+            <p class="text-xl text-gray-200 max-w-2xl mx-auto">
+                Learn to identify phishing attempts through realistic email examples. Test your ability to spot the red flags before they steal your data.
+            </p>
+        </div>
+    </section>
+
+    <!-- Instructions -->
+    <section class="py-12 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-yellow-900 border border-yellow-600 rounded-lg p-6 mb-8">
+                <div class="flex items-start space-x-3">
+                    <svg class="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.728-.833-2.498 0L4.316 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                    </svg>
+                    <div>
+                        <h3 class="text-lg font-semibold text-yellow-400 mb-2">How to Use This Simulator</h3>
+                        <ul class="text-yellow-100 space-y-1">
+                            <li>• Review each email carefully for suspicious elements</li>
+                            <li>• Look for red flags like urgent language, poor grammar, or suspicious links</li>
+                            <li>• Make your assessment: Legitimate or Phishing?</li>
+                            <li>• Get instant feedback and learn why it's safe or dangerous</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Simulation -->
+    <section class="py-8 px-4">
+        <div class="max-w-4xl mx-auto">
+            
+            <!-- Email Selection -->
+            <div class="bg-gray-800 rounded-lg p-6 mb-8 border border-gray-700">
+                <h2 class="text-2xl font-bold mb-4">Choose an Email to Analyze</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button onclick="loadEmail(0)" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg text-left transition duration-300">
+                        <div class="font-semibold mb-2">Bank Security Alert</div>
+                        <div class="text-sm text-gray-400">From: security@bankofamerica.com</div>
+                        <div class="text-sm text-gray-400">Subject: Urgent: Account Suspended</div>
+                    </button>
+                    <button onclick="loadEmail(1)" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg text-left transition duration-300">
+                        <div class="font-semibold mb-2">IT Department</div>
+                        <div class="text-sm text-gray-400">From: it-support@company.com</div>
+                        <div class="text-sm text-gray-400">Subject: Password Expiring Soon</div>
+                    </button>
+                    <button onclick="loadEmail(2)" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg text-left transition duration-300">
+                        <div class="font-semibold mb-2">Team Meeting</div>
+                        <div class="text-sm text-gray-400">From: manager@yourcompany.com</div>
+                        <div class="text-sm text-gray-400">Subject: Tomorrow's Team Meeting</div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Email Display -->
+            <div class="bg-white text-black rounded-lg overflow-hidden mb-8 border border-gray-300" id="emailDisplay" style="display: none;">
+                <!-- Email Header -->
+                <div class="bg-gray-100 p-4 border-b border-gray-300">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold" id="senderAvatar">B</div>
+                            <div>
+                                <div class="font-semibold" id="senderName">Sender Name</div>
+                                <div class="text-sm text-gray-600" id="senderEmail">sender@email.com</div>
+                            </div>
+                        </div>
+                        <div class="text-sm text-gray-500" id="emailDate">Today 2:34 PM</div>
+                    </div>
+                    <div class="text-lg font-semibold mb-2" id="emailSubject">Subject Line</div>
+                    <div class="text-sm text-gray-600">
+                        To: <span id="recipientEmail">you@yourcompany.com</span>
+                    </div>
+                </div>
+
+                <!-- Email Body -->
+                <div class="p-6" id="emailBody">
+                    <!-- Email content will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Analysis Section -->
+            <div class="bg-gray-800 rounded-lg p-6 mb-8 border border-gray-700" id="analysisSection" style="display: none;">
+                <h3 class="text-xl font-bold mb-4">Your Analysis</h3>
+                <p class="text-gray-300 mb-6">What do you think about this email?</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <button onclick="makeAssessment('legitimate')" class="bg-green-600 hover:bg-green-700 text-white py-4 px-6 rounded-lg transition duration-300 font-semibold">
+                        ✅ Legitimate Email
+                    </button>
+                    <button onclick="makeAssessment('phishing')" class="bg-red-600 hover:bg-red-700 text-white py-4 px-6 rounded-lg transition duration-300 font-semibold">
+                        🚨 Phishing Attempt
+                    </button>
+                </div>
+
+                <div class="text-center">
+                    <button onclick="showHints()" class="text-blue-400 hover:text-blue-300 underline">
+                        Need a hint? Click here
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hints Section -->
+            <div class="bg-blue-900 border border-blue-600 rounded-lg p-6 mb-8" id="hintsSection" style="display: none;">
+                <h3 class="text-xl font-bold mb-4 text-blue-400">🔍 Things to Look For</h3>
+                <div id="hintsContent">
+                    <!-- Hints will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700" id="resultsSection" style="display: none;">
+                <div class="text-center mb-6">
+                    <div class="inline-block p-4 rounded-full mb-4" id="resultIcon">
+                        <!-- Icon will be set by JavaScript -->
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2" id="resultTitle">Result</h3>
+                    <p class="text-gray-300" id="resultMessage">Assessment message</p>
+                </div>
+
+                <div class="bg-gray-700 rounded-lg p-6 mb-6">
+                    <h4 class="text-lg font-semibold mb-4">🎯 Red Flags Analysis</h4>
+                    <div id="redFlagsContent">
+                        <!-- Red flags will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="bg-gray-700 rounded-lg p-6 mb-6">
+                    <h4 class="text-lg font-semibold mb-4">💡 Key Learning Points</h4>
+                    <div id="learningContent">
+                        <!-- Learning points will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button onclick="resetSimulation()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded transition duration-300">
+                        Try Another Email
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="py-16 px-4 bg-gray-800">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Phishing Prevention Tips</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-green-400">✅ Always Verify</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>• Check sender's email address carefully</li>
+                        <li>• Verify links by hovering (don't click)</li>
+                        <li>• Contact organization directly if suspicious</li>
+                        <li>• Look for HTTPS and proper domains</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-red-400">🚨 Red Flags</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>• Urgent language and threats</li>
+                        <li>• Poor grammar and spelling</li>
+                        <li>• Unexpected attachments</li>
+                        <li>• Requests for personal information</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-700 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2025 CyberSec Hub. Built with ❤️ for the cybersecurity community.</p>
+            <div class="mt-4">
+                <a href="index.html" class="text-blue-400 hover:text-blue-300 transition duration-300">← Back to Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Email data
+        const emails = [
+            {
+                // Phishing email example
+                sender: {
+                    name: "Bank of America Security",
+                    email: "security@bankofamerica-alert.com", // Note the suspicious domain
+                    avatar: "B"
+                },
+                subject: "URGENT: Your Account Has Been Suspended - Immediate Action Required",
+                date: "Today 11:47 AM",
+                recipient: "you@yourcompany.com",
+                body: `
+                    <div style="font-family: Arial, sans-serif;">
+                        <div style="background: #d32f2f; color: white; padding: 10px; text-align: center; margin-bottom: 20px;">
+                            <strong>⚠️ URGENT SECURITY ALERT ⚠️</strong>
+                        </div>
+                        
+                        <p>Dear Valued Customer,</p>
+                        
+                        <p>We have detected <strong>suspicious activity</strong> on your Bank of America account. For your security, your account has been <span style="color: red; font-weight: bold;">TEMPORARILY SUSPENDED</span>.</p>
+                        
+                        <p>To avoid permanent closure, you must verify your identity within <strong>24 HOURS</strong> by clicking the link below:</p>
+                        
+                        <div style="text-align: center; margin: 20px 0;">
+                            <a href="http://bankofamerica-verify.suspicious-domain.com/urgent-verify" style="background: #d32f2f; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block;">
+                                VERIFY ACCOUNT NOW
+                            </a>
+                        </div>
+                        
+                        <p><strong>Recent suspicious transactions:</strong></p>
+                        <ul>
+                            <li>$2,500.00 - Amazon Purchase (UNAUTHORIZED)</li>
+                            <li>$1,200.00 - Wire Transfer to Nigeria (BLOCKED)</li>
+                            <li>$850.00 - Cash Withdrawal ATM (SUSPICIOUS)</li>
+                        </ul>
+                        
+                        <p>If you do not verify your account immediately, it will be permanently closed and all funds will be forfeit.</p>
+                        
+                        <p>Thank you for your immediate attention to this matter.</p>
+                        
+                        <p>Sincerely,<br>
+                        Bank of America Security Team<br>
+                        Customer Protection Department</p>
+                        
+                        <hr style="margin: 20px 0;">
+                        <p style="font-size: 12px; color: #666;">
+                            This email was sent to protect your account. Do not reply to this email.
+                        </p>
+                    </div>
+                `,
+                isPhishing: true,
+                redFlags: [
+                    "Suspicious sender domain: 'bankofamerica-alert.com' instead of official 'bankofamerica.com'",
+                    "Urgent language designed to create panic and bypass rational thinking",
+                    "Threatening account closure to pressure immediate action",
+                    "Suspicious link leads to a non-official domain",
+                    "Generic greeting 'Dear Valued Customer' instead of your actual name",
+                    "Claims of unauthorized transactions without asking you to verify them through official channels"
+                ],
+                hints: [
+                    "Check the sender's email domain carefully",
+                    "Look for urgent language that creates pressure",
+                    "Hover over links to see where they actually lead",
+                    "Real banks don't ask you to verify account info via email"
+                ],
+                learning: [
+                    "Banks will never ask you to verify account information via email links",
+                    "Always log into your bank account directly through their official website",
+                    "Scammers use urgent language to bypass critical thinking",
+                    "Check domain names carefully - scammers often use similar but incorrect domains"
+                ]
+            },
+            {
+                // Phishing email - IT password expiry
+                sender: {
+                    name: "IT Support",
+                    email: "it-support@company.co.uk", // Note the .co.uk instead of .com
+                    avatar: "IT"
+                },
+                subject: "Password Expiring in 24 Hours - Action Required",
+                date: "Today 9:15 AM",
+                recipient: "you@yourcompany.com",
+                body: `
+                    <div style="font-family: Arial, sans-serif;">
+                        <div style="background: #ff9800; color: white; padding: 10px; margin-bottom: 20px;">
+                            <strong>IT Security Notice</strong>
+                        </div>
+                        
+                        <p>Hello,</p>
+                        
+                        <p>This is an automated notification from the IT Security Department. Your company password will expire in <strong>24 hours</strong>.</p>
+                        
+                        <p>To prevent account lockout and maintain access to company resources, please update your password immediately by clicking the link below:</p>
+                        
+                        <div style="text-align: center; margin: 20px 0;">
+                            <a href="http://company-password-reset.netlify.app/update" style="background: #ff9800; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;">
+                                Update Password Now
+                            </a>
+                        </div>
+                        
+                        <p>Please ensure your new password meets the following requirements:</p>
+                        <ul>
+                            <li>At least 8 characters long</li>
+                            <li>Contains uppercase and lowercase letters</li>
+                            <li>Includes at least one number</li>
+                            <li>Contains at least one special character</li>
+                        </ul>
+                        
+                        <p>If you do not update your password within 24 hours, your account will be temporarily disabled for security reasons.</p>
+                        
+                        <p>For questions, contact the IT Help Desk at ext. 1234.</p>
+                        
+                        <p>Thank you for your cooperation in maintaining our security standards.</p>
+                        
+                        <p>Best regards,<br>
+                        IT Security Team<br>
+                        Company Technology Services</p>
+                    </div>
+                `,
+                isPhishing: true,
+                redFlags: [
+                    "Sender domain is suspicious: '.co.uk' instead of expected company domain",
+                    "External link for password reset instead of company's internal systems",
+                    "Creates urgency with '24 hours' deadline",
+                    "No personalization - doesn't address you by name",
+                    "Link leads to 'netlify.app' which is not a company domain"
+                ],
+                hints: [
+                    "Check if the email domain matches your company's official domain",
+                    "Company password resets usually happen through internal systems",
+                    "Hover over the password reset link to see where it goes",
+                    "Most companies use internal portals, not external websites for password resets"
+                ],
+                learning: [
+                    "Legitimate IT departments use internal systems for password resets",
+                    "Always verify the sender's email domain matches your organization",
+                    "When in doubt, contact IT directly through known channels",
+                    "Password reset links should lead to your company's official domains"
+                ]
+            },
+            {
+                // Legitimate email
+                sender: {
+                    name: "Sarah Johnson",
+                    email: "sarah.johnson@yourcompany.com",
+                    avatar: "SJ"
+                },
+                subject: "Team Meeting Tomorrow - Q1 Planning Session",
+                date: "Today 3:22 PM",
+                recipient: "you@yourcompany.com",
+                body: `
+                    <div style="font-family: Arial, sans-serif;">
+                        <p>Hi Team,</p>
+                        
+                        <p>I hope everyone is having a great week! I wanted to remind you about our Q1 planning meeting scheduled for tomorrow.</p>
+                        
+                        <p><strong>Meeting Details:</strong></p>
+                        <ul>
+                            <li><strong>Date:</strong> Tomorrow, January 15th</li>
+                            <li><strong>Time:</strong> 2:00 PM - 3:30 PM</li>
+                            <li><strong>Location:</strong> Conference Room B (2nd floor)</li>
+                            <li><strong>Meeting ID:</strong> Available in your calendar invite</li>
+                        </ul>
+                        
+                        <p><strong>Agenda:</strong></p>
+                        <ol>
+                            <li>Review Q4 performance metrics</li>
+                            <li>Discuss Q1 objectives and key results</li>
+                            <li>Resource allocation planning</li>
+                            <li>Timeline review for upcoming projects</li>
+                            <li>Q&A and open discussion</li>
+                        </ol>
+                        
+                        <p>Please bring your Q4 reports and any questions or concerns you'd like to discuss. If you haven't already, please review the Q1 strategy document I shared last week.</p>
+                        
+                        <p>If you can't attend, please let me know ASAP so we can arrange for you to join virtually or reschedule if necessary.</p>
+                        
+                        <p>Looking forward to a productive session!</p>
+                        
+                        <p>Best regards,<br>
+                        Sarah<br>
+                        <em>Sarah Johnson</em><br>
+                        Project Manager<br>
+                        Direct: (555) 123-4567<br>
+                        sarah.johnson@yourcompany.com</p>
+                    </div>
+                `,
+                isPhishing: false,
+                redFlags: [],
+                hints: [
+                    "Check the sender's email domain",
+                    "Look for personal details and context",
+                    "Notice the professional tone and specific information",
+                    "No urgent calls to action or suspicious links"
+                ],
+                learning: [
+                    "Legitimate emails often have specific, detailed information",
+                    "Professional colleagues use company email domains",
+                    "Real business emails have context and don't rush you to take action",
+                    "Legitimate emails provide contact information and professional signatures"
+                ]
+            }
+        ];
+
+        let currentEmailIndex = -1;
+        let userAssessment = null;
+
+        function loadEmail(index) {
+            currentEmailIndex = index;
+            const email = emails[index];
+            
+            // Update email display
+            document.getElementById('senderAvatar').textContent = email.sender.avatar;
+            document.getElementById('senderName').textContent = email.sender.name;
+            document.getElementById('senderEmail').textContent = email.sender.email;
+            document.getElementById('emailDate').textContent = email.date;
+            document.getElementById('emailSubject').textContent = email.subject;
+            document.getElementById('recipientEmail').textContent = email.recipient;
+            document.getElementById('emailBody').innerHTML = email.body;
+
+            // Show email and analysis sections
+            document.getElementById('emailDisplay').style.display = 'block';
+            document.getElementById('analysisSection').style.display = 'block';
+            
+            // Hide other sections
+            document.getElementById('hintsSection').style.display = 'none';
+            document.getElementById('resultsSection').style.display = 'none';
+            
+            // Reset assessment
+            userAssessment = null;
+            
+            // Scroll to email
+            document.getElementById('emailDisplay').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showHints() {
+            const email = emails[currentEmailIndex];
+            const hintsContent = document.getElementById('hintsContent');
+            
+            hintsContent.innerHTML = email.hints.map(hint => 
+                `<div class="flex items-start space-x-2 mb-2">
+                    <span class="text-blue-400">•</span>
+                    <span class="text-blue-100">${hint}</span>
+                </div>`
+            ).join('');
+            
+            document.getElementById('hintsSection').style.display = 'block';
+            document.getElementById('hintsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function makeAssessment(assessment) {
+            userAssessment = assessment;
+            const email = emails[currentEmailIndex];
+            const isCorrect = (assessment === 'phishing') === email.isPhishing;
+            
+            // Show results section
+            document.getElementById('resultsSection').style.display = 'block';
+            
+            // Update result display
+            const resultIcon = document.getElementById('resultIcon');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultMessage = document.getElementById('resultMessage');
+            
+            if (isCorrect) {
+                resultIcon.innerHTML = '<svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>';
+                resultIcon.className = 'inline-block p-4 bg-green-600 rounded-full mb-4';
+                resultTitle.textContent = '🎉 Correct!';
+                resultTitle.className = 'text-2xl font-bold mb-2 text-green-400';
+                
+                if (email.isPhishing) {
+                    resultMessage.textContent = 'Great job! You correctly identified this as a phishing attempt. Your vigilance helps protect against cyber attacks.';
+                } else {
+                    resultMessage.textContent = 'Excellent! You correctly identified this as a legitimate email. Good judgment in recognizing safe communications.';
+                }
+            } else {
+                resultIcon.innerHTML = '<svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+                resultIcon.className = 'inline-block p-4 bg-red-600 rounded-full mb-4';
+                resultTitle.textContent = 'Not Quite Right';
+                resultTitle.className = 'text-2xl font-bold mb-2 text-red-400';
+                
+                if (email.isPhishing) {
+                    resultMessage.textContent = 'This was actually a phishing attempt! Don\'t worry - these can be tricky to spot. Review the red flags below to learn what to watch for.';
+                } else {
+                    resultMessage.textContent = 'This was actually a legitimate email. While it\'s good to be cautious, this one was safe. See the analysis below for what made it trustworthy.';
+                }
+            }
+            
+            // Populate red flags analysis
+            const redFlagsContent = document.getElementById('redFlagsContent');
+            if (email.redFlags.length > 0) {
+                redFlagsContent.innerHTML = email.redFlags.map(flag => 
+                    `<div class="flex items-start space-x-2 mb-2">
+                        <span class="text-red-400 text-lg">🚩</span>
+                        <span class="text-gray-300">${flag}</span>
+                    </div>`
+                ).join('');
+            } else {
+                redFlagsContent.innerHTML = '<div class="text-green-400">✅ No significant red flags detected in this email. It appears to be legitimate business communication.</div>';
+            }
+            
+            // Populate learning content
+            const learningContent = document.getElementById('learningContent');
+            learningContent.innerHTML = email.learning.map(point => 
+                `<div class="flex items-start space-x-2 mb-2">
+                    <span class="text-blue-400">💡</span>
+                    <span class="text-gray-300">${point}</span>
+                </div>`
+            ).join('');
+            
+            // Scroll to results
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetSimulation() {
+            // Hide all sections except email selection
+            document.getElementById('emailDisplay').style.display = 'none';
+            document.getElementById('analysisSection').style.display = 'none';
+            document.getElementById('hintsSection').style.display = 'none';
+            document.getElementById('resultsSection').style.display = 'none';
+            
+            // Reset state
+            currentEmailIndex = -1;
+            userAssessment = null;
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add some visual feedback for email links (hover to show where they lead)
+        document.addEventListener('DOMContentLoaded', function() {
+            // This will run when the page loads
+            setTimeout(() => {
+                const emailBody = document.getElementById('emailBody');
+                if (emailBody) {
+                    // Add hover effects to links in email body
+                    emailBody.addEventListener('mouseover', function(e) {
+                        if (e.target.tagName === 'A') {
+                            const href = e.target.getAttribute('href');
+                            if (href && !e.target.title) {
+                                e.target.title = `This link leads to: ${href}`;
+                            }
+                        }
+                    });
+                    
+                    // Prevent actually clicking links in the demo
+                    emailBody.addEventListener('click', function(e) {
+                        if (e.target.tagName === 'A') {
+                            e.preventDefault();
+                            alert(`🚨 DEMO ALERT 🚨\n\nThis link would have taken you to:\n${e.target.getAttribute('href')}\n\nIn a real phishing attack, clicking this could be dangerous!\n\nIn this demo, all links are safely disabled.`);
+                        }
+                    });
+                }
+            }, 100);
+        });
+
+        // Add keyboard shortcuts for quick assessment
+        document.addEventListener('keydown', function(e) {
+            if (currentEmailIndex >= 0 && document.getElementById('analysisSection').style.display !== 'none') {
+                if (e.key === 'l' || e.key === 'L') {
+                    makeAssessment('legitimate');
+                } else if (e.key === 'p' || e.key === 'P') {
+                    makeAssessment('phishing');
+                } else if (e.key === 'h' || e.key === 'H') {
+                    showHints();
+                }
+            }
+        });
+
+        // Add a small tutorial overlay for first-time users
+        function showKeyboardShortcuts() {
+            alert('💡 Keyboard Shortcuts:\n\n• Press "L" for Legitimate\n• Press "P" for Phishing\n• Press "H" for Hints\n\nThese work when analyzing an email!');
+        }
+
+        // Add the tutorial button to the page
+        window.addEventListener('load', function() {
+            const nav = document.querySelector('nav .hidden.md\\:block');
+            if (nav) {
+                const tutorialBtn = document.createElement('button');
+                tutorialBtn.textContent = '💡 Tips';
+                tutorialBtn.className = 'text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium';
+                tutorialBtn.onclick = showKeyboardShortcuts;
+                nav.querySelector('.ml-10').appendChild(tutorialBtn);
+            }
+        });
+    </script>
+</body>
+</html>

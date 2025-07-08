@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Quiz - CyberSec Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            50: '#f0f9ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="index.html" class="text-xl font-bold text-blue-400">🛡️ CyberSec Hub</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="password-checker.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Password Checker</a>
+                        <a href="#" class="text-white bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Quiz</a>
+                        <a href="phishing-demo.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Phishing Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="py-12 px-4 bg-gradient-to-r from-purple-800 to-blue-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block p-4 bg-purple-600 rounded-full mb-6">
+                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                </svg>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Cybersecurity Quiz</h1>
+            <p class="text-xl text-gray-200 max-w-2xl mx-auto">
+                Test your cybersecurity knowledge with interactive questions covering everything from basic security practices to advanced threat detection.
+            </p>
+        </div>
+    </section>
+
+    <!-- Quiz Selection -->
+    <section class="py-16 px-4" id="quizSelection">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Choose Your Challenge</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Beginner Quiz -->
+                <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 hover:border-green-500 transition duration-300 cursor-pointer" onclick="startQuiz('beginner')">
+                    <div class="text-center">
+                        <div class="inline-block p-4 bg-green-600 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-green-400">Beginner</h3>
+                        <p class="text-gray-300 mb-4">Basic security concepts and best practices</p>
+                        <div class="text-sm text-gray-400 mb-4">
+                            <p>• 10 Questions</p>
+                            <p>• 5 minutes</p>
+                            <p>• Multiple Choice</p>
+                        </div>
+                        <button class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded transition duration-300 w-full">
+                            Start Quiz
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Intermediate Quiz -->
+                <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 hover:border-blue-500 transition duration-300 cursor-pointer" onclick="startQuiz('intermediate')">
+                    <div class="text-center">
+                        <div class="inline-block p-4 bg-blue-600 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-blue-400">Intermediate</h3>
+                        <p class="text-gray-300 mb-4">Network security and threat detection</p>
+                        <div class="text-sm text-gray-400 mb-4">
+                            <p>• 15 Questions</p>
+                            <p>• 10 minutes</p>
+                            <p>• Multiple Choice + Scenarios</p>
+                        </div>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition duration-300 w-full">
+                            Start Quiz
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Advanced Quiz -->
+                <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 hover:border-red-500 transition duration-300 cursor-pointer" onclick="startQuiz('advanced')">
+                    <div class="text-center">
+                        <div class="inline-block p-4 bg-red-600 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-red-400">Advanced</h3>
+                        <p class="text-gray-300 mb-4">Advanced threats and incident response</p>
+                        <div class="text-sm text-gray-400 mb-4">
+                            <p>• 20 Questions</p>
+                            <p>• 15 minutes</p>
+                            <p>• Complex Scenarios</p>
+                        </div>
+                        <button class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded transition duration-300 w-full">
+                            Start Quiz
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Container -->
+    <section class="py-16 px-4 hidden" id="quizContainer">
+        <div class="max-w-4xl mx-auto">
+            
+            <!-- Quiz Header -->
+            <div class="bg-gray-800 rounded-lg p-6 mb-8 border border-gray-700">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold" id="quizTitle">Quiz</h2>
+                    <button onclick="exitQuiz()" class="text-gray-400 hover:text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-gray-400">Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span></span>
+                        <div class="w-64 bg-gray-700 rounded-full h-2">
+                            <div id="progressBar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 10%"></div>
+                        </div>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        Time: <span id="timer" class="font-mono">05:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-gray-800 rounded-lg p-8 mb-8 border border-gray-700" id="questionCard">
+                <h3 class="text-xl font-semibold mb-6" id="questionText">Loading question...</h3>
+                <div class="space-y-4" id="answersContainer">
+                    <!-- Answers will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between">
+                <button id="prevBtn" onclick="previousQuestion()" class="bg-gray-700 hover:bg-gray-600 text-white py-2 px-6 rounded transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    Previous
+                </button>
+                <button id="nextBtn" onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    Next
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="py-16 px-4 hidden" id="resultsSection">
+        <div class="max-w-4xl mx-auto text-center">
+            
+            <!-- Score Display -->
+            <div class="bg-gray-800 rounded-lg p-8 mb-8 border border-gray-700">
+                <div class="mb-6">
+                    <div class="inline-block p-4 bg-blue-600 rounded-full mb-4">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl font-bold mb-2">Quiz Complete!</h2>
+                    <p class="text-gray-300">Here's how you performed</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <div class="text-3xl font-bold text-blue-400 mb-2" id="finalScore">0%</div>
+                        <div class="text-gray-300">Score</div>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <div class="text-3xl font-bold text-green-400 mb-2" id="correctAnswers">0/10</div>
+                        <div class="text-gray-300">Correct</div>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <div class="text-3xl font-bold text-purple-400 mb-2" id="timeTaken">00:00</div>
+                        <div class="text-gray-300">Time</div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4" id="performanceTitle">Performance Level</h3>
+                    <p class="text-gray-300" id="performanceMessage">Great job on completing the quiz!</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="reviewAnswers()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded transition duration-300">
+                        Review Answers
+                    </button>
+                    <button onclick="retakeQuiz()" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-6 rounded transition duration-300">
+                        Retake Quiz
+                    </button>
+                    <button onclick="exitQuiz()" class="border border-gray-400 text-gray-300 hover:text-white hover:border-white py-2 px-6 rounded transition duration-300">
+                        Back to Home
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Review Section -->
+            <div class="bg-gray-800 rounded-lg p-8 border border-gray-700 hidden" id="reviewSection">
+                <h3 class="text-2xl font-bold mb-6">Answer Review</h3>
+                <div id="reviewContent" class="space-y-6 text-left">
+                    <!-- Review content will be populated by JavaScript -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-700 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2025 CyberSec Hub. Built with ❤️ for the cybersecurity community.</p>
+            <div class="mt-4">
+                <a href="index.html" class="text-blue-400 hover:text-blue-300 transition duration-300">← Back to Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz data
+        const quizData = {
+            beginner: {
+                title: "Beginner Cybersecurity Quiz",
+                timeLimit: 300, // 5 minutes
+                questions: [
+                    {
+                        question: "What does 'phishing' refer to in cybersecurity?",
+                        answers: [
+                            "A type of malware that encrypts files",
+                            "Fraudulent emails designed to steal personal information",
+                            "A method of securing network connections",
+                            "A type of firewall protection"
+                        ],
+                        correct: 1,
+                        explanation: "Phishing is a cyber attack where attackers send fraudulent emails that appear to be from reputable sources to steal sensitive information like passwords or credit card numbers."
+                    },
+                    {
+                        question: "Which of these is the strongest password?",
+                        answers: [
+                            "password123",
+                            "P@ssw0rd!",
+                            "MyD0g$N@me1sMax!",
+                            "admin"
+                        ],
+                        correct: 2,
+                        explanation: "Strong passwords should be long, use a mix of characters, and avoid common words. 'MyD0g$N@me1sMax!' is longest and uses uppercase, lowercase, numbers, and symbols."
+                    },
+                    {
+                        question: "What is two-factor authentication (2FA)?",
+                        answers: [
+                            "Using two different passwords",
+                            "A security process requiring two different authentication factors",
+                            "Having two antivirus programs",
+                            "Using two different web browsers"
+                        ],
+                        correct: 1,
+                        explanation: "Two-factor authentication requires two different authentication factors, such as something you know (password) and something you have (phone or token)."
+                    },
+                    {
+                        question: "Which of these is NOT a common sign of a phishing email?",
+                        answers: [
+                            "Urgent language demanding immediate action",
+                            "Poor grammar and spelling mistakes",
+                            "Requests for personal information",
+                            "Proper company branding and logos"
+                        ],
+                        correct: 3,
+                        explanation: "While phishing emails may use company logos, they typically contain urgent language, poor grammar, and requests for personal information. Proper branding alone doesn't indicate legitimacy."
+                    },
+                    {
+                        question: "What should you do if you receive a suspicious email?",
+                        answers: [
+                            "Click the links to verify if they're real",
+                            "Reply asking if the email is legitimate",
+                            "Delete it and report it to your IT department",
+                            "Forward it to all your contacts to warn them"
+                        ],
+                        correct: 2,
+                        explanation: "Never click suspicious links or reply to suspicious emails. The safest approach is to delete the email and report it to your IT department or security team."
+                    },
+                    {
+                        question: "What is malware?",
+                        answers: [
+                            "A type of computer hardware",
+                            "Malicious software designed to harm computers",
+                            "A security protocol",
+                            "A type of encryption"
+                        ],
+                        correct: 1,
+                        explanation: "Malware is malicious software designed to damage, disrupt, or gain unauthorized access to computer systems."
+                    },
+                    {
+                        question: "How often should you update your passwords?",
+                        answers: [
+                            "Never, once set they're secure",
+                            "Every day",
+                            "Every 3-6 months or when there's a breach",
+                            "Only when you forget them"
+                        ],
+                        correct: 2,
+                        explanation: "Security experts recommend updating passwords every 3-6 months or immediately if there's been a security breach or compromise."
+                    },
+                    {
+                        question: "What is a VPN used for?",
+                        answers: [
+                            "To make your computer faster",
+                            "To create a secure, encrypted connection over the internet",
+                            "To block advertisements",
+                            "To increase internet speed"
+                        ],
+                        correct: 1,
+                        explanation: "A VPN (Virtual Private Network) creates a secure, encrypted connection over the internet, protecting your data and privacy."
+                    },
+                    {
+                        question: "Which of these is a safe practice when using public Wi-Fi?",
+                        answers: [
+                            "Access your bank account normally",
+                            "Avoid accessing sensitive information",
+                            "Share the password with others",
+                            "Disable your firewall for better connectivity"
+                        ],
+                        correct: 1,
+                        explanation: "Public Wi-Fi networks are often unsecured. Avoid accessing sensitive information like banking or personal accounts when connected to public Wi-Fi."
+                    },
+                    {
+                        question: "What does HTTPS in a website URL indicate?",
+                        answers: [
+                            "The website is free to use",
+                            "The website loads faster",
+                            "The connection is encrypted and secure",
+                            "The website has no advertisements"
+                        ],
+                        correct: 2,
+                        explanation: "HTTPS indicates that the connection between your browser and the website is encrypted and secure, protecting data in transit."
+                    }
+                ]
+            },
+            intermediate: {
+                title: "Intermediate Cybersecurity Quiz",
+                timeLimit: 600, // 10 minutes
+                questions: [
+                    {
+                        question: "What is the primary purpose of a firewall?",
+                        answers: [
+                            "To speed up internet connections",
+                            "To filter network traffic based on security rules",
+                            "To store passwords securely",
+                            "To encrypt files on your computer"
+                        ],
+                        correct: 1,
+                        explanation: "A firewall monitors and filters incoming and outgoing network traffic based on predetermined security rules to protect against unauthorized access."
+                    },
+                    {
+                        question: "Which attack involves overwhelming a server with traffic?",
+                        answers: [
+                            "SQL Injection",
+                            "Cross-Site Scripting (XSS)",
+                            "Distributed Denial of Service (DDoS)",
+                            "Man-in-the-Middle"
+                        ],
+                        correct: 2,
+                        explanation: "A DDoS attack overwhelms a server or network with massive amounts of traffic from multiple sources, making it unavailable to legitimate users."
+                    },
+                    {
+                        question: "What is social engineering in cybersecurity?",
+                        answers: [
+                            "Building secure network infrastructures",
+                            "Manipulating people to reveal confidential information",
+                            "Designing user-friendly security software",
+                            "Creating social media security policies"
+                        ],
+                        correct: 1,
+                        explanation: "Social engineering is the psychological manipulation of people to divulge confidential information or perform actions that compromise security."
+                    },
+                    {
+                        question: "What does SQL injection target?",
+                        answers: [
+                            "Email servers",
+                            "Database systems",
+                            "File storage systems",
+                            "Network routers"
+                        ],
+                        correct: 1,
+                        explanation: "SQL injection attacks target database systems by inserting malicious SQL code into application queries to access or manipulate data."
+                    },
+                    {
+                        question: "Which encryption type uses the same key for encryption and decryption?",
+                        answers: [
+                            "Asymmetric encryption",
+                            "Public key encryption",
+                            "Symmetric encryption",
+                            "Hash encryption"
+                        ],
+                        correct: 2,
+                        explanation: "Symmetric encryption uses the same key for both encryption and decryption, making key management crucial for security."
+                    }
+                ]
+            },
+            advanced: {
+                title: "Advanced Cybersecurity Quiz",
+                timeLimit: 900, // 15 minutes
+                questions: [
+                    {
+                        question: "In incident response, what does the 'containment' phase involve?",
+                        answers: [
+                            "Documenting the incident for legal purposes",
+                            "Isolating affected systems to prevent spread",
+                            "Restoring systems to normal operations",
+                            "Identifying the root cause of the incident"
+                        ],
+                        correct: 1,
+                        explanation: "Containment involves isolating affected systems to prevent the incident from spreading to other parts of the network while preserving evidence."
+                    },
+                    {
+                        question: "What is a zero-day vulnerability?",
+                        answers: [
+                            "A vulnerability that takes zero days to exploit",
+                            "A security flaw unknown to security vendors",
+                            "A patch that fixes vulnerabilities immediately",
+                            "A vulnerability that expires after one day"
+                        ],
+                        correct: 1,
+                        explanation: "A zero-day vulnerability is a security flaw that is unknown to security vendors and has no available patch, making it particularly dangerous."
+                    },
+                    {
+                        question: "Which framework is commonly used for risk management?",
+                        answers: [
+                            "NIST Cybersecurity Framework",
+                            "HTTP/2 Protocol",
+                            "TCP/IP Stack",
+                            "DNS Resolution"
+                        ],
+                        correct: 0,
+                        explanation: "The NIST Cybersecurity Framework provides guidelines and best practices for organizations to manage and reduce cybersecurity risks."
+                    }
+                ]
+            }
+        };
+
+        // Quiz state
+        let currentQuiz = null;
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let quizStartTime = null;
+        let timerInterval = null;
+        let timeRemaining = 0;
+
+        function startQuiz(difficulty) {
+            currentQuiz = quizData[difficulty];
+            currentQuestionIndex = 0;
+            userAnswers = new Array(currentQuiz.questions.length).fill(null);
+            quizStartTime = Date.now();
+            timeRemaining = currentQuiz.timeLimit;
+
+            // Hide selection, show quiz
+            document.getElementById('quizSelection').classList.add('hidden');
+            document.getElementById('quizContainer').classList.remove('hidden');
+
+            // Set up quiz
+            document.getElementById('quizTitle').textContent = currentQuiz.title;
+            document.getElementById('totalQuestions').textContent = currentQuiz.questions.length;
+
+            // Start timer
+            startTimer();
+
+            // Load first question
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    finishQuiz();
+                }
+            }, 1000);
+        }
+
+        function loadQuestion() {
+            const question = currentQuiz.questions[currentQuestionIndex];
+            
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('questionText').textContent = question.question;
+
+            // Update progress bar
+            const progress = ((currentQuestionIndex + 1) / currentQuiz.questions.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            // Load answers
+            const container = document.getElementById('answersContainer');
+            container.innerHTML = '';
+
+            question.answers.forEach((answer, index) => {
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'flex items-center space-x-3 p-4 bg-gray-700 rounded-lg cursor-pointer hover:bg-gray-600 transition duration-300';
+                answerDiv.onclick = () => selectAnswer(index);
+
+                const isSelected = userAnswers[currentQuestionIndex] === index;
+                if (isSelected) {
+                    answerDiv.classList.add('ring-2', 'ring-blue-500', 'bg-blue-900');
+                }
+
+                answerDiv.innerHTML = `
+                    <div class="w-6 h-6 rounded-full border-2 border-gray-400 flex items-center justify-center ${isSelected ? 'bg-blue-500 border-blue-500' : ''}">
+                        ${isSelected ? '<div class="w-3 h-3 bg-white rounded-full"></div>' : ''}
+                    </div>
+                    <span class="text-white">${answer}</span>
+                `;
+
+                container.appendChild(answerDiv);
+            });
+
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            document.getElementById('nextBtn').disabled = userAnswers[currentQuestionIndex] === null;
+            document.getElementById('nextBtn').textContent = 
+                currentQuestionIndex === currentQuiz.questions.length - 1 ? 'Finish Quiz' : 'Next';
+        }
+
+        function selectAnswer(answerIndex) {
+            userAnswers[currentQuestionIndex] = answerIndex;
+            document.getElementById('nextBtn').disabled = false;
+            loadQuestion(); // Reload to show selection
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < currentQuiz.questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        function finishQuiz() {
+            clearInterval(timerInterval);
+            
+            // Calculate results
+            let correctCount = 0;
+            userAnswers.forEach((answer, index) => {
+                if (answer === currentQuiz.questions[index].correct) {
+                    correctCount++;
+                }
+            });
+
+            const score = Math.round((correctCount / currentQuiz.questions.length) * 100);
+            const timeTaken = currentQuiz.timeLimit - timeRemaining;
+            
+            // Show results
+            document.getElementById('quizContainer').classList.add('hidden');
+            document.getElementById('resultsSection').classList.remove('hidden');
+
+            document.getElementById('finalScore').textContent = `${score}%`;
+            document.getElementById('correctAnswers').textContent = `${correctCount}/${currentQuiz.questions.length}`;
+            
+            const minutes = Math.floor(timeTaken / 60);
+            const seconds = timeTaken % 60;
+            document.getElementById('timeTaken').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            // Performance message
+            let performanceTitle, performanceMessage;
+            if (score >= 90) {
+                performanceTitle = "🏆 Excellent!";
+                performanceMessage = "Outstanding knowledge! You're well-versed in cybersecurity principles.";
+            } else if (score >= 80) {
+                performanceTitle = "🎯 Great Job!";
+                performanceMessage = "Solid understanding! You have a good grasp of cybersecurity concepts.";
+            } else if (score >= 70) {
+                performanceTitle = "👍 Good Work!";
+                performanceMessage = "Good foundation! Consider reviewing some areas for improvement.";
+            } else if (score >= 60) {
+                performanceTitle = "📚 Keep Learning!";
+                performanceMessage = "You're on the right track! More study will help strengthen your knowledge.";
+            } else {
+                performanceTitle = "🔄 Try Again!";
+                performanceMessage = "Don't give up! Review the materials and take the quiz again.";
+            }
+
+            document.getElementById('performanceTitle').textContent = performanceTitle;
+            document.getElementById('performanceMessage').textContent = performanceMessage;
+        }
+
+        function reviewAnswers() {
+            const reviewContent = document.getElementById('reviewContent');
+            reviewContent.innerHTML = '';
+
+            currentQuiz.questions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.correct;
+
+                const reviewItem = document.createElement('div');
+                reviewItem.className = 'bg-gray-700 p-6 rounded-lg';
+                
+                reviewItem.innerHTML = `
+                    <div class="flex items-start space-x-4 mb-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-8 h-8 rounded-full ${isCorrect ? 'bg-green-500' : 'bg-red-500'} flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    ${isCorrect 
+                                        ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>'
+                                        : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'
+                                    }
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-white mb-2">Question ${index + 1}</h4>
+                            <p class="text-gray-300 mb-3">${question.question}</p>
+                            
+                            <div class="space-y-2 mb-4">
+                                ${question.answers.map((answer, answerIndex) => {
+                                    let className = 'p-2 rounded border text-sm ';
+                                    if (answerIndex === question.correct) {
+                                        className += 'border-green-500 bg-green-900 text-green-100';
+                                    } else if (answerIndex === userAnswer && userAnswer !== question.correct) {
+                                        className += 'border-red-500 bg-red-900 text-red-100';
+                                    } else {
+                                        className += 'border-gray-600 bg-gray-800 text-gray-300';
+                                    }
+                                    
+                                    const prefix = answerIndex === question.correct ? '✓ ' : 
+                                                 (answerIndex === userAnswer && userAnswer !== question.correct) ? '✗ ' : '';
+                                    
+                                    return `<div class="${className}">${prefix}${answer}</div>`;
+                                }).join('')}
+                            </div>
+                            
+                            <div class="bg-gray-800 p-3 rounded border border-gray-600">
+                                <p class="text-sm text-gray-300"><strong>Explanation:</strong> ${question.explanation}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                reviewContent.appendChild(reviewItem);
+            });
+
+            document.getElementById('reviewSection').classList.remove('hidden');
+        }
+
+        function retakeQuiz() {
+            currentQuestionIndex = 0;
+            userAnswers = new Array(currentQuiz.questions.length).fill(null);
+            quizStartTime = Date.now();
+            timeRemaining = currentQuiz.timeLimit;
+
+            document.getElementById('resultsSection').classList.add('hidden');
+            document.getElementById('quizContainer').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function exitQuiz() {
+            clearInterval(timerInterval);
+            
+            // Reset state
+            currentQuiz = null;
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            
+            // Show selection screen
+            document.getElementById('quizContainer').classList.add('hidden');
+            document.getElementById('resultsSection').classList.add('hidden');
+            document.getElementById('reviewSection').classList.add('hidden');
+            document.getElementById('quizSelection').classList.remove('hidden');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('quizContainer').classList.contains('hidden')) return;
+            
+            if (e.key === 'ArrowLeft' && !document.getElementById('prevBtn').disabled) {
+                previousQuestion();
+            } else if (e.key === 'ArrowRight' && !document.getElementById('nextBtn').disabled) {
+                nextQuestion();
+            } else if (e.key >= '1' && e.key <= '4') {
+                const answerIndex = parseInt(e.key) - 1;
+                if (answerIndex < currentQuiz.questions[currentQuestionIndex].answers.length) {
+                    selectAnswer(answerIndex);
+                }
+            }
+        });
+
+        // Prevent accidental navigation away during quiz
+        window.addEventListener('beforeunload', function(e) {
+            if (currentQuiz && document.getElementById('quizContainer').classList.contains('hidden') === false) {
+                e.preventDefault();
+                e.returnValue = '';
+                return '';
+            }
+        });
+    </script>
+</body>
+</html>
