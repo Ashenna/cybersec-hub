@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Phishing Analyzer - CyberSec Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            50: '#f0f9ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="index.html" class="text-xl font-bold text-blue-400">🛡️ CyberSec Hub</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="password-checker.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Password Checker</a>
+                        <a href="quiz.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Quiz</a>
+                        <a href="phishing-demo.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Basic Demo</a>
+                        <a href="#" class="text-white bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Advanced Analyzer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="py-12 px-4 bg-gradient-to-r from-red-800 via-orange-800 to-yellow-800">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="inline-block p-4 bg-red-600 rounded-full mb-6">
+                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Advanced Phishing Email Analyzer</h1>
+            <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                Professional-grade email forensics and phishing detection training. Learn to analyze email headers, investigate suspicious links, and perform digital forensics like a cybersecurity expert.
+            </p>
+        </div>
+    </section>
+
+    <!-- Training Modes -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Choose Your Training Mode</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                
+                <!-- Guided Analysis -->
+                <div class="bg-gradient-to-br from-blue-800 to-blue-900 rounded-lg p-6 border border-blue-600 hover:border-blue-400 transition duration-300 cursor-pointer" onclick="setMode('guided')">
+                    <div class="text-center">
+                        <div class="inline-block p-4 bg-blue-600 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-blue-300">Guided Analysis</h3>
+                        <p class="text-blue-100 mb-4">Step-by-step forensic analysis with expert guidance</p>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition duration-300 w-full">
+                            Start Guided Mode
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Expert Challenge -->
+                <div class="bg-gradient-to-br from-red-800 to-red-900 rounded-lg p-6 border border-red-600 hover:border-red-400 transition duration-300 cursor-pointer" onclick="setMode('expert')">
+                    <div class="text-center">
+                        <div class="inline-block p-4 bg-red-600 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-red-300">Expert Challenge</h3>
+                        <p class="text-red-100 mb-4">Advanced analysis without hints - prove your skills</p>
+                        <button class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded transition duration-300 w-full">
+                            Start Expert Mode
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Campaign Builder -->
+                <div class="bg-gradient-to-br from-purple-800 to-purple-900 rounded-lg p-6 border border-purple-600 hover:border-purple-400 transition duration-300 cursor-pointer" onclick="setMode('builder')">
+                    <div class="text-center">
+                        <div class="inline-block p-4 bg-purple-600 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-purple-300">Campaign Builder</h3>
+                        <p class="text-purple-100 mb-4">Create custom phishing scenarios for your organization</p>
+                        <button class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition duration-300 w-full">
+                            Start Builder
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Analysis Interface -->
+    <section class="py-8 px-4" id="analysisInterface" style="display: none;">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Email Selection with Difficulty Indicators -->
+            <div class="bg-gray-800 rounded-lg p-6 mb-8 border border-gray-700">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold">Select Email for Analysis</h2>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-sm text-gray-400">Mode:</span>
+                        <span id="currentMode" class="px-3 py-1 bg-blue-600 rounded-full text-sm font-semibold">Guided</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Advanced Phishing Examples -->
+                    <button onclick="loadAdvancedEmail(0)" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg text-left transition duration-300 border-l-4 border-red-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="font-semibold">CEO Fraud / BEC</div>
+                            <span class="px-2 py-1 bg-red-600 text-xs rounded-full">HARD</span>
+                        </div>
+                        <div class="text-sm text-gray-400">From: ceo@company-group.com</div>
+                        <div class="text-sm text-gray-400">Subject: Urgent Wire Transfer Request</div>
+                        <div class="text-xs text-red-400 mt-2">Business Email Compromise</div>
+                    </button>
+
+                    <button onclick="loadAdvancedEmail(1)" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg text-left transition duration-300 border-l-4 border-yellow-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="font-semibold">Credential Harvesting</div>
+                            <span class="px-2 py-1 bg-yellow-600 text-xs rounded-full">MEDIUM</span>
+                        </div>
+                        <div class="text-sm text-gray-400">From: security@microsoft-support.com</div>
+                        <div class="text-sm text-gray-400">Subject: Account Security Verification</div>
+                        <div class="text-xs text-yellow-400 mt-2">Lookalike Domain</div>
+                    </button>
+
+                    <button onclick="loadAdvancedEmail(2)" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg text-left transition duration-300 border-l-4 border-orange-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="font-semibold">Malware Attachment</div>
+                            <span class="px-2 py-1 bg-orange-600 text-xs rounded-full">HIGH</span>
+                        </div>
+                        <div class="text-sm text-gray-400">From: invoice@accounting-dept.com</div>
+                        <div class="text-sm text-gray-400">Subject: Invoice #2024-0847 - Payment Due</div>
+                        <div class="text-xs text-orange-400 mt-2">Malicious Attachment</div>
+                    </button>
+
+                    <button onclick="loadAdvancedEmail(3)" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg text-left transition duration-300 border-l-4 border-green-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="font-semibold">Legitimate Business Email</div>
+                            <span class="px-2 py-1 bg-green-600 text-xs rounded-full">SAFE</span>
+                        </div>
+                        <div class="text-sm text-gray-400">From: hr@yourcompany.com</div>
+                        <div class="text-sm text-gray-400">Subject: Q1 Performance Review Schedule</div>
+                        <div class="text-xs text-green-400 mt-2">Legitimate Internal</div>
+                    </button>
+
+                    <button onclick="loadAdvancedEmail(4)" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg text-left transition duration-300 border-l-4 border-purple-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="font-semibold">Spear Phishing</div>
+                            <span class="px-2 py-1 bg-purple-600 text-xs rounded-full">EXPERT</span>
+                        </div>
+                        <div class="text-sm text-gray-400">From: security@linkedin.com</div>
+                        <div class="text-sm text-gray-400">Subject: Your account security alert</div>
+                        <div class="text-xs text-purple-400 mt-2">Targeted Attack</div>
+                    </button>
+
+                    <button onclick="generateRandomEmail()" class="bg-gradient-to-br from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 p-4 rounded-lg text-left transition duration-300 border-l-4 border-blue-400">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="font-semibold">AI-Generated Email</div>
+                            <span class="px-2 py-1 bg-blue-600 text-xs rounded-full">RANDOM</span>
+                        </div>
+                        <div class="text-sm text-blue-200">Dynamically created phishing scenario</div>
+                        <div class="text-sm text-blue-200">Based on current threat intelligence</div>
+                        <div class="text-xs text-blue-300 mt-2">🤖 AI-Powered</div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Advanced Email Analysis Dashboard -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="analysisDashboard" style="display: none;">
+                
+                <!-- Email Display Panel -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white text-black rounded-lg overflow-hidden mb-6 border border-gray-300">
+                        <!-- Enhanced Email Header with Forensic Data -->
+                        <div class="bg-gray-100 p-4 border-b border-gray-300">
+                            <div class="flex justify-between items-start mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold" id="senderAvatar">S</div>
+                                    <div>
+                                        <div class="font-semibold" id="senderName">Sender Name</div>
+                                        <div class="text-sm text-gray-600" id="senderEmail">sender@domain.com</div>
+                                        <div class="text-xs text-gray-500" id="senderIP">IP: 192.168.1.1</div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-sm text-gray-500" id="emailDate">Jan 15, 2025 2:34 PM</div>
+                                    <div class="text-xs text-gray-500" id="emailTimezone">UTC-8</div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-lg font-semibold mb-2" id="emailSubject">Email Subject</div>
+                            
+                            <!-- Forensic Headers -->
+                            <div class="text-sm text-gray-600 space-y-1">
+                                <div>To: <span id="recipientEmail">you@company.com</span></div>
+                                <div>Return-Path: <span id="returnPath" class="font-mono text-xs">sender@domain.com</span></div>
+                                <div>Message-ID: <span id="messageId" class="font-mono text-xs">unique-id@domain.com</span></div>
+                            </div>
+
+                            <!-- Security Indicators -->
+                            <div class="flex space-x-2 mt-3">
+                                <span id="spfStatus" class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">SPF: FAIL</span>
+                                <span id="dkimStatus" class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">DKIM: FAIL</span>
+                                <span id="dmarcStatus" class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">DMARC: FAIL</span>
+                            </div>
+                        </div>
+
+                        <!-- Email Body -->
+                        <div class="p-6" id="emailBody">
+                            <!-- Email content will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Link Analysis Panel -->
+                    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                            </svg>
+                            Link Analysis
+                        </h3>
+                        <div id="linkAnalysis" class="space-y-3">
+                            <!-- Links will be analyzed here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis Tools Panel -->
+                <div class="space-y-6">
+                    
+                    <!-- Threat Intelligence -->
+                    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                            Threat Intel
+                        </h3>
+                        <div id="threatIntel" class="space-y-3">
+                            <!-- Threat intelligence will be displayed here -->
+                        </div>
+                    </div>
+
+                    <!-- Risk Assessment -->
+                    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.728-.833-2.498 0L4.316 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                            </svg>
+                            Risk Score
+                        </h3>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold mb-2" id="riskScore">85</div>
+                            <div class="text-sm text-gray-400 mb-4">Risk Level</div>
+                            <div class="w-full bg-gray-700 rounded-full h-3 mb-4">
+                                <div id="riskBar" class="bg-red-500 h-3 rounded-full transition-all duration-500" style="width: 85%"></div>
+                            </div>
+                            <div id="riskLevel" class="text-red-400 font-semibold">HIGH RISK</div>
+                        </div>
+                    </div>
+
+                    <!-- Analysis Tools -->
+                    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-xl font-bold mb-4">Analysis Tools</h3>
+                        <div class="space-y-3">
+                            <button onclick="analyzeHeaders()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition duration-300 text-sm">
+                                🔍 Analyze Headers
+                            </button>
+                            <button onclick="checkReputation()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition duration-300 text-sm">
+                                🛡️ Check Sender Reputation
+                            </button>
+                            <button onclick="scanAttachments()" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 px-4 rounded transition duration-300 text-sm">
+                                📎 Scan Attachments
+                            </button>
+                            <button onclick="showHints()" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded transition duration-300 text-sm" id="hintsButton">
+                                💡 Show Hints
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Final Assessment -->
+                    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-xl font-bold mb-4">Your Assessment</h3>
+                        <div class="space-y-3">
+                            <button onclick="makeAdvancedAssessment('legitimate')" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded transition duration-300 font-semibold">
+                                ✅ Legitimate
+                            </button>
+                            <button onclick="makeAdvancedAssessment('phishing')" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded transition duration-300 font-semibold">
+                                🚨 Phishing
+                            </button>
+                            <button onclick="makeAdvancedAssessment('suspicious')" class="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-3 px-4 rounded transition duration-300 font-semibold">
+                                ⚠️ Suspicious
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Results Modal -->
+    <div id="resultsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-lg max-w-4xl w-full max-h-90vh overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Analysis Results</h2>
+                    <button onclick="closeResults()" class="text-gray-400 hover:text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="resultsContent">
+                    <!-- Results will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-700 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2025 CyberSec Hub - Advanced Phishing Training Platform</p>
+            <div class="mt-4">
+                <a href="index.html" class="text-blue-400 hover:text-blue-300 transition duration-300">← Back to Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Advanced email database with forensic details
+        const advancedEmails = [
+            {
+                // CEO Fraud/BEC Example
+                id: 0,
+                type: "BEC",
+                difficulty: "HARD",
+                sender: {
+                    name: "Robert Chen",
+                    email: "r.chen@company-group.com", // Typosquatting
+                    avatar: "RC",
+                    ip: "185.234.72.45", // Suspicious IP
+                    country: "Unknown"
+                },
+                headers: {
+                    returnPath: "bounce@company-group.com",
+                    messageId: "<urgent-wire-2024@company-group.com>",
+                    spf: "FAIL",
+                    dkim: "FAIL", 
+                    dmarc: "FAIL"
+                },
+                subject: "URGENT: Wire Transfer Request - Confidential",
+                date: "Today 4:23 PM",
+                timezone: "UTC+0",
+                recipient: "finance@yourcompany.com",
+                body: `
+                    <div style="font-family: Arial, sans-serif; font-size: 14px;">
+                        <p>Dear Finance Team,</p>
+                        
+                        <p>I hope this email finds you well. Due to a time-sensitive acquisition opportunity that has just arisen, I need your immediate assistance with a confidential wire transfer.</p>
+                        
+                        <p><strong>Transfer Details:</strong></p>
+                        <ul>
+                            <li><strong>Amount:</strong> $487,500 USD</li>
+                            <li><strong>Recipient:</strong> Meridian Consulting LLC</li>
+                            <li><strong>Account:</strong> 4471-8829-3344-7712</li>
+                            <li><strong>Routing:</strong> 021000021</li>
+                            <li><strong>SWIFT:</strong> CHASUS33</li>
+                        </ul>
+                        
+                        <p>This transaction must be completed before 5:00 PM today to secure the deal. Please process this immediately and send me confirmation once completed.</p>
+                        
+                        <p>Due to the confidential nature of this acquisition, please do not discuss this with other team members until I can brief everyone tomorrow morning.</p>
+                        
+                        <p>If you have any questions, please call my mobile: +1 (555) 987-6543</p>
+                        
+                        <p>Best regards,<br>
+                        Robert Chen<br>
+                        Chief Executive Officer<br>
+                        YourCompany Inc.</p>
+                    </div>
+                `,
+                links: [
+                    {
+                        text: "mobile: +1 (555) 987-6543",
+                        url: "tel:+15559876543",
+                        analysis: {
+                            reputation: "Unknown",
+                            risk: "Medium",
+                            notes: "Phone number not verified in company directory"
+                        }
+                    }
+                ],
+                attachments: [],
+                isPhishing: true,
+                riskScore: 95,
+                threatIntel: [
+                    {
+                        type: "Domain Analysis",
+                        status: "SUSPICIOUS",
+                        details: "Domain 'company-group.com' registered 3 days ago, differs from legitimate 'yourcompany.com'"
+                    },
+                    {
+                        type: "BEC Pattern",
+                        status: "DETECTED",
+                        details: "Email matches known Business Email Compromise patterns: urgent wire transfer, executive impersonation"
+                    },
+                    {
+                        type: "Geolocation",
+                        status: "ANOMALOUS", 
+                        details: "Email originated from IP in Eastern Europe, CEO typically sends from corporate network"
+                    }
+                ],
+                redFlags: [
+                    "Typosquatting domain: 'company-group.com' vs legitimate 'yourcompany.com'",
+                    "All email authentication failures (SPF, DKIM, DMARC)",
+                    "Urgent financial request with tight deadline",
+                    "Request for secrecy and avoiding normal approval processes",
+                    "External IP address inconsistent with executive's normal location",
+                    "Generic executive signature without personalization"
+                ],
+                learning: [
+                    "BEC attacks impersonate executives to bypass financial controls",
+                    "Always verify financial requests through secondary communication channels",
+                    "Check email authentication results before processing financial requests",
+                    "Domain typosquatting is a common BEC technique"
+                ]
+            },
+            {
+                // Credential Harvesting Example
+                id: 1,
+                type: "Credential Harvesting",
+                difficulty: "MEDIUM",
+                sender: {
+                    name: "Microsoft Security Team",
+                    email: "security@microsoft-support.com", // Lookalike domain
+                    avatar: "MS",
+                    ip: "203.145.89.12",
+                    country: "Singapore"
+                },
+                headers: {
+                    returnPath: "noreply@microsoft-support.com",
+                    messageId: "<sec-alert-789123@microsoft-support.com>",
+                    spf: "PASS",
+                    dkim: "FAIL",
+                    dmarc: "FAIL"
+                },
+                subject: "Security Alert: Suspicious sign-in attempt blocked",
+                date: "Today 1:15 PM",
+                timezone: "UTC-8",
+                recipient: "you@yourcompany.com",
+                body: `
+                    <div style="font-family: Segoe UI, sans-serif; max-width: 600px;">
+                        <div style="background: #0078d4; color: white; padding: 20px; text-align: center;">
+                            <h2 style="margin: 0;">Microsoft Security Alert</h2>
+                        </div>
+                        
+                        <div style="padding: 20px; background: #f8f9fa;">
+                            <p>Hello,</p>
+                            
+                            <p>We detected an unusual sign-in attempt to your Microsoft account from an unrecognized device:</p>
+                            
+                            <div style="background: white; padding: 15px; border-left: 4px solid #ff4444; margin: 20px 0;">
+                                <strong>Sign-in Details:</strong><br>
+                                Location: Moscow, Russia<br>
+                                Device: Windows PC<br>
+                                Time: January 15, 2025 at 12:47 PM PST<br>
+                                IP Address: 91.203.45.123
+                            </div>
+                            
+                            <p>If this was you, you can safely ignore this email. If this wasn't you, your account may be compromised.</p>
+                            
+                            <div style="text-align: center; margin: 30px 0;">
+                                <a href="https://microsoft-support.com/secure-account/verify?token=abc123xyz" 
+                                   style="background: #0078d4; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; display: inline-block;">
+                                    Secure My Account
+                                </a>
+                            </div>
+                            
+                            <p>This security review will help us verify your identity and secure your account.</p>
+                            
+                            <p>Best regards,<br>
+                            Microsoft Security Team</p>
+                            
+                            <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
+                            <p style="font-size: 12px; color: #666;">
+                                Microsoft Corporation, One Microsoft Way, Redmond, WA 98052<br>
+                                This is an automated message. Please do not reply to this email.
+                            </p>
+                        </div>
+                    </div>
+                `,
+                links: [
+                    {
+                        text: "Secure My Account",
+                        url: "https://microsoft-support.com/secure-account/verify?token=abc123xyz",
+                        analysis: {
+                            reputation: "MALICIOUS",
+                            risk: "High",
+                            notes: "Lookalike domain, not official Microsoft property"
+                        }
+                    }
+                ],
+                attachments: [],
+                isPhishing: true,
+                riskScore: 78,
+                threatIntel: [
+                    {
+                        type: "Domain Analysis",
+                        status: "LOOKALIKE",
+                        details: "Domain 'microsoft-support.com' is not owned by Microsoft Corporation"
+                    },
+                    {
+                        type: "URL Analysis",
+                        status: "MALICIOUS",
+                        details: "Link leads to credential harvesting page designed to steal login credentials"
+                    },
+                    {
+                        type: "Brand Impersonation",
+                        status: "DETECTED",
+                        details: "Email impersonates Microsoft branding and messaging style"
+                    }
+                ],
+                redFlags: [
+                    "Lookalike domain: 'microsoft-support.com' vs legitimate 'microsoft.com'",
+                    "DKIM and DMARC authentication failures",
+                    "Generic greeting without personalized account information",
+                    "Urgent security language designed to create panic",
+                    "Link leads to non-Microsoft domain for 'account verification'",
+                    "No legitimate security alert would ask you to click links"
+                ],
+                learning: [
+                    "Always verify security alerts by logging in directly to the service",
+                    "Check if the sender domain is actually owned by the claimed organization",
+                    "Legitimate services use their official domains for security communications",
+                    "Be suspicious of urgent security messages that require immediate action"
+                ]
+            }
+        ];
+
+        let currentMode = 'guided';
+        let currentAdvancedEmail = null;
+        let analysisStartTime = null;
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.getElementById('currentMode').textContent = mode.charAt(0).toUpperCase() + mode.slice(1);
+            document.getElementById('analysisInterface').style.display = 'block';
+            
+            // Hide hints button in expert mode
+            if (mode === 'expert') {
+                document.getElementById('hintsButton').style.display = 'none';
+            } else {
+                document.getElementById('hintsButton').style.display = 'block';
+            }
+            
+            // Scroll to interface
+            document.getElementById('analysisInterface').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function loadAdvancedEmail(index) {
+            currentAdvancedEmail = advancedEmails[index];
+            analysisStartTime = Date.now();
+            
+            const email = currentAdvancedEmail;
+            
+            // Update email display with forensic details
+            document.getElementById('senderAvatar').textContent = email.sender.avatar;
+            document.getElementById('senderName').textContent = email.sender.name;
+            document.getElementById('senderEmail').textContent = email.sender.email;
+            document.getElementById('senderIP').textContent = `IP: ${email.sender.ip}`;
+            document.getElementById('emailDate').textContent = email.date;
+            document.getElementById('emailTimezone').textContent = email.timezone;
+            document.getElementById('emailSubject').textContent = email.subject;
+            document.getElementById('recipientEmail').textContent = email.recipient;
+            document.getElementById('returnPath').textContent = email.headers.returnPath;
+            document.getElementById('messageId').textContent = email.headers.messageId;
+            document.getElementById('emailBody').innerHTML = email.body;
+
+            // Update security indicators
+            updateSecurityIndicators(email.headers);
+            
+            // Update risk assessment
+            updateRiskAssessment(email.riskScore);
+            
+            // Update threat intelligence
+            updateThreatIntelligence(email.threatIntel);
+            
+            // Analyze links
+            analyzeLinksSafely(email.links);
+            
+            // Show analysis dashboard
+            document.getElementById('analysisDashboard').style.display = 'block';
+            document.getElementById('analysisDashboard').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateSecurityIndicators(headers) {
+            const indicators = ['spf', 'dkim', 'dmarc'];
+            indicators.forEach(indicator => {
+                const element = document.getElementById(`${indicator}Status`);
+                const status = headers[indicator];
+                
+                if (status === 'PASS') {
+                    element.className = 'px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full';
+                    element.textContent = `${indicator.toUpperCase()}: PASS`;
+                } else {
+                    element.className = 'px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full';
+                    element.textContent = `${indicator.toUpperCase()}: ${status}`;
+                }
+            });
+        }
+
+        function updateRiskAssessment(score) {
+            document.getElementById('riskScore').textContent = score;
+            document.getElementById('riskBar').style.width = `${score}%`;
+            
+            let riskLevel, riskColor;
+            if (score >= 80) {
+                riskLevel = 'CRITICAL';
+                riskColor = 'text-red-400';
+                document.getElementById('riskBar').className = 'bg-red-500 h-3 rounded-full transition-all duration-500';
+            } else if (score >= 60) {
+                riskLevel = 'HIGH RISK';
+                riskColor = 'text-orange-400';
+                document.getElementById('riskBar').className = 'bg-orange-500 h-3 rounded-full transition-all duration-500';
+            } else if (score >= 40) {
+                riskLevel = 'MEDIUM RISK';
+                riskColor = 'text-yellow-400';
+                document.getElementById('riskBar').className = 'bg-yellow-500 h-3 rounded-full transition-all duration-500';
+            } else {
+                riskLevel = 'LOW RISK';
+                riskColor = 'text-green-400';
+                document.getElementById('riskBar').className = 'bg-green-500 h-3 rounded-full transition-all duration-500';
+            }
+            
+            document.getElementById('riskLevel').textContent = riskLevel;
+            document.getElementById('riskLevel').className = `${riskColor} font-semibold`;
+        }
+
+        function updateThreatIntelligence(intel) {
+            const container = document.getElementById('threatIntel');
+            container.innerHTML = '';
+            
+            intel.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'bg-gray-700 p-3 rounded border-l-4';
+                
+                let borderColor;
+                if (item.status === 'DETECTED' || item.status === 'MALICIOUS') {
+                    borderColor = 'border-red-500';
+                } else if (item.status === 'SUSPICIOUS' || item.status === 'ANOMALOUS') {
+                    borderColor = 'border-yellow-500';
+                } else {
+                    borderColor = 'border-blue-500';
+                }
+                
+                div.className += ` ${borderColor}`;
+                
+                div.innerHTML = `
+                    <div class="font-semibold text-sm mb-1">${item.type}</div>
+                    <div class="text-xs text-gray-300 mb-2">${item.status}</div>
+                    <div class="text-xs text-gray-400">${item.details}</div>
+                `;
+                
+                container.appendChild(div);
+            });
+        }
+
+        function analyzeLinksSafely(links) {
+            const container = document.getElementById('linkAnalysis');
+            container.innerHTML = '';
+            
+            if (links.length === 0) {
+                container.innerHTML = '<div class="text-gray-400 text-sm">No links detected in this email.</div>';
+                return;
+            }
+            
+            links.forEach(link => {
+                const div = document.createElement('div');
+                div.className = 'bg-gray-700 p-3 rounded';
+                
+                let statusColor;
+                if (link.analysis.risk === 'High') {
+                    statusColor = 'text-red-400';
+                } else if (link.analysis.risk === 'Medium') {
+                    statusColor = 'text-yellow-400';
+                } else {
+                    statusColor = 'text-green-400';
+                }
+                
+                div.innerHTML = `
+                    <div class="font-semibold text-sm mb-2">${link.text}</div>
+                    <div class="font-mono text-xs text-gray-300 mb-2 break-all">${link.url}</div>
+                    <div class="flex justify-between items-center">
+                        <span class="${statusColor} text-xs font-semibold">${link.analysis.reputation}</span>
+                        <span class="text-xs text-gray-400">Risk: ${link.analysis.risk}</span>
+                    </div>
+                    <div class="text-xs text-gray-400 mt-1">${link.analysis.notes}</div>
+                `;
+                
+                container.appendChild(div);
+            });
+        }
+
+        function analyzeHeaders() {
+            alert('📧 Header Analysis:\n\n• Return-Path and From address mismatch detected\n• Missing or invalid authentication records\n• Suspicious routing through multiple mail servers\n• Timestamp inconsistencies found');
+        }
+
+        function checkReputation() {
+            if (currentAdvancedEmail) {
+                const reputation = currentAdvancedEmail.riskScore > 70 ? 'Poor reputation' : 'Good reputation';
+                alert(`🛡️ Sender Reputation Check:\n\n• Domain: ${currentAdvancedEmail.sender.email.split('@')[1]}\n• IP: ${currentAdvancedEmail.sender.ip}\n• Reputation: ${reputation}\n• Threat feeds: ${currentAdvancedEmail.riskScore > 70 ? 'Multiple warnings found' : 'Clean'}`);
+            }
+        }
+
+        function scanAttachments() {
+            alert('📎 Attachment Scan Results:\n\n• No attachments detected in this email\n• If attachments were present, they would be scanned for:\n  - Malware signatures\n  - Suspicious file types\n  - Embedded macros\n  - Document exploits');
+        }
+
+        function showHints() {
+            if (currentMode === 'expert') return;
+            
+            if (currentAdvancedEmail && currentAdvancedEmail.redFlags) {
+                const hints = currentAdvancedEmail.redFlags.slice(0, 3); // Show first 3 hints
+                alert(`💡 Analysis Hints:\n\n${hints.map((hint, i) => `${i+1}. ${hint}`).join('\n')}`);
+            }
+        }
+
+        function makeAdvancedAssessment(assessment) {
+            const email = currentAdvancedEmail;
+            const analysisTime = Math.round((Date.now() - analysisStartTime) / 1000);
+            
+            let isCorrect = false;
+            if (assessment === 'phishing' && email.isPhishing) isCorrect = true;
+            if (assessment === 'legitimate' && !email.isPhishing) isCorrect = true;
+            if (assessment === 'suspicious' && email.riskScore > 60) isCorrect = true;
+
+            // Generate detailed results
+            const results = generateDetailedResults(email, assessment, isCorrect, analysisTime);
+            
+            // Show results modal
+            document.getElementById('resultsContent').innerHTML = results;
+            document.getElementById('resultsModal').classList.remove('hidden');
+        }
+
+        function generateDetailedResults(email, userAssessment, isCorrect, analysisTime) {
+            const correctAssessment = email.isPhishing ? 'phishing' : 'legitimate';
+            
+            return `
+                <div class="space-y-6">
+                    <!-- Assessment Result -->
+                    <div class="text-center p-6 rounded-lg ${isCorrect ? 'bg-green-900 border border-green-600' : 'bg-red-900 border border-red-600'}">
+                        <div class="text-4xl mb-4">${isCorrect ? '🎉' : '❌'}</div>
+                        <h3 class="text-2xl font-bold mb-2">${isCorrect ? 'Excellent Analysis!' : 'Incorrect Assessment'}</h3>
+                        <p class="text-lg">
+                            You assessed this as: <strong>${userAssessment}</strong><br>
+                            Correct assessment: <strong>${correctAssessment}</strong>
+                        </p>
+                        <div class="mt-4 text-sm text-gray-300">
+                            Analysis time: ${analysisTime} seconds
+                        </div>
+                    </div>
+
+                    <!-- Detailed Forensic Analysis -->
+                    <div class="bg-gray-700 rounded-lg p-6">
+                        <h4 class="text-xl font-bold mb-4">🔍 Forensic Analysis Report</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h5 class="font-semibold mb-3 text-blue-400">Technical Indicators</h5>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• <strong>Email Authentication:</strong> ${email.headers.spf}/${email.headers.dkim}/${email.headers.dmarc}</li>
+                                    <li>• <strong>Sender IP:</strong> ${email.sender.ip}</li>
+                                    <li>• <strong>Risk Score:</strong> ${email.riskScore}/100</li>
+                                    <li>• <strong>Domain Age:</strong> ${email.type === 'BEC' ? 'Recently registered (suspicious)' : 'Established domain'}</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold mb-3 text-red-400">Red Flags Detected</h5>
+                                <ul class="space-y-1 text-sm">
+                                    ${email.redFlags.slice(0, 4).map(flag => `<li>• ${flag}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Learning Summary -->
+                    <div class="bg-gray-700 rounded-lg p-6">
+                        <h4 class="text-xl font-bold mb-4">💡 Key Learning Points</h4>
+                        <div class="space-y-3">
+                            ${email.learning.map(point => `
+                                <div class="flex items-start space-x-2">
+                                    <span class="text-blue-400">•</span>
+                                    <span class="text-sm">${point}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Next Steps -->
+                    <div class="bg-gray-700 rounded-lg p-6">
+                        <h4 class="text-xl font-bold mb-4">🎯 Recommended Next Steps</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <button onclick="closeResults(); loadAdvancedEmail(${(email.id + 1) % advancedEmails.length})" 
+                                    class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition duration-300">
+                                Analyze Next Email
+                            </button>
+                            <button onclick="closeResults(); setMode('expert')" 
+                                    class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition duration-300">
+                                Try Expert Mode
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateRandomEmail() {
+            // This would integrate with AI/threat intelligence to create dynamic scenarios
+            alert('🤖 AI Email Generator\n\nThis feature would dynamically create new phishing scenarios based on:\n• Current threat intelligence\n• Recent attack patterns\n• Seasonal campaigns\n• Industry-specific threats\n\nComing soon in the full platform!');
+        }
+
+        function closeResults() {
+            document.getElementById('resultsModal').classList.add('hidden');
+        }
+
+        // Keyboard shortcuts for power users
+        document.addEventListener('keydown', function(e) {
+            if (currentAdvancedEmail && document.getElementById('analysisDashboard').style.display !== 'none') {
+                if (e.key === '1') makeAdvancedAssessment('legitimate');
+                else if (e.key === '2') makeAdvancedAssessment('phishing');
+                else if (e.key === '3') makeAdvancedAssessment('suspicious');
+                else if (e.key === 'h' || e.key === 'H') showHints();
+            }
+        });
+
+        // Advanced features initialization
+        window.addEventListener('load', function() {
+            // Initialize advanced features
+            console.log('Advanced Phishing Analyzer loaded');
+        });
+    </script>
+</body>
+</html>
